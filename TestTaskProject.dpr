@@ -5,10 +5,10 @@ program TestTaskProject;
 {$R *.res}
 
 uses
-  Windows, Classes, SyncObjs, System.SysUtils;
+  Classes, SyncObjs, SysUtils;
 
 const
-  CValueEnd = 1000000;
+  CValueEnd = 4000;//1000000;
   CNameGeneralFile = 'Result.txt';
 
 var
@@ -113,12 +113,12 @@ type
           LWriteGeneralFileMutex.Lock;
           AssignFile(LGeneralFile, CNameGeneralFile);
           Append(LGeneralFile);
-          WriteLn(LGeneralFile, NumForFile + ' - ' + IntToStr(LCurrentValue));
+          Write(LGeneralFile, IntToStr(LCurrentValue) + ' ');
           CloseFile(LGeneralFile);
           LWriteGeneralFileMutex.Unlock;
 
           Append(LOneThreadFile);
-          WriteLn(LOneThreadFile, IntToStr(LCurrentValue));
+          Write(LOneThreadFile, IntToStr(LCurrentValue) + ' ');
         end;
       end;
     finally
@@ -155,4 +155,7 @@ begin
 
   LMyThread1.WaitFor;
   LMyThread2.WaitFor;
+
+  WriteLn('End');
+  ReadLn;
 end.
