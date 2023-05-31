@@ -8,7 +8,7 @@ uses
   Classes, SyncObjs, SysUtils;
 
 const
-  CValueEnd = 4000;//1000000;
+  CValueEnd = 1000000;
   CNameGeneralFile = 'Result.txt';
 
 var
